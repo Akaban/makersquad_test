@@ -1,0 +1,25 @@
+{% block content %}
+    <h2>Facture du client {{client.name}}</h2>
+    <ul>
+        <table>
+        <tr>
+            <th>Facture no</th>
+            <th>Nb lignes</th>
+            <th>Total TVA (€)</th>
+            <th>Total (€)</th>
+            <th>Date de création</th>
+        </tr>
+        {% for invoice in invoices %}
+              <tr>
+                <th><a href="/invoices/{{invoice.invoice_id}}">{{invoice.invoice_id}}</a></th>
+                <th>{{ invoice.get_number_of_lines }}</th>
+                <th>{{ invoice.get_total_iva }}</th>
+                <th>{{ invoice.get_total_price }}</th>
+                <th>{{ invoice.invoice_date }}</th>
+              </tr>
+        {% endfor %}
+        </table>
+    </ul>
+
+<a href="/api/clients/{{client.id}}"> JSON...</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% block content %}
+    <h2>Facture du client {{client.name}}</h2>
+    <ul>
+        <table>
+        <tr>
+            <th>Intitulé</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Taux TVA</th>
+            <th>Total TVA (€)</th>
+            <th>Taux TVA</th>
+        </tr>
+        {% for line in invoice_lines %}
+              <tr>
+                <th>{{ line.title }}</th>
+                <th>{{ line.price_ht }}</th>
+                <th>{{ line.quantity }}</th>
+                <th>{{ line.get_total_iva }}</th>
+                <th>{{ line.get_total_price }}</th>
+                <th>{{ line.get_iva_percentage }}</th>
+              </tr>
+        {% endfor %}
+        </table>
+    </ul>
+
+Total Price: {{ invoice.get_total_price_ht }} </br>
+Total Price (excl taxes): {{ invoice.get_total_iva }} </br>
+Gran Total: {{ invoice.get_total_price }} </br>
+
+<a href="/api/invoices/{{invoice.invoice_id}}"> JSON...</a>
+{% endblock %}

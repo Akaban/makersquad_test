@@ -1,0 +1,11 @@
+<form action="" method="POST">
+{% csrf_token %}
+{{form.as_ul}}
+{{ invoice_item_form.management_form }}
+{{ invoice_item_form.non_form_errors }}
+{% for form in invoice_item_form %}  
+    <br />              
+    {{form.as_table}}
+{% endfor %}
+<input type="submit" value="Envoyer"/>
+</form>

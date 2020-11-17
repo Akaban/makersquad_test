@@ -1,0 +1,27 @@
+{% block content %}
+    <h2>Clients</h2>
+    <ul>
+        <table>
+        <tr>
+            <th>Client</th>
+            <th>Nb factures</th>
+            <th>Total TVA (€)</th>
+            <th>Total (€)</th>
+            <th>Date de la dernière facture</th>
+        </tr>
+        {% for client in object_list %}
+              <tr>
+                <th><a href="/clients/{{ client.id }}">{{ client.name }}</a></th>
+                <th>{{ client.get_number_of_invoices }}</th>
+                <th>{{ client.get_total_iva }}</th>
+                <th>{{ client.get_total_price }}</th>
+                <th>{{ client.get_last_invoice_date }}</th>
+              </tr>
+        {% endfor %}
+        </table>
+    </ul>
+
+<a href="/api/clients/{{client.id}}"> JSON...</a>
+<a href="/clients/new"> Ajouter nouveau client</a>
+<a href="/invoices/new"> Ajouter nouvelle facture</a>
+{% endblock %}
