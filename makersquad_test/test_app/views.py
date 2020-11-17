@@ -32,7 +32,6 @@ class ClientViewSet(viewsets.ModelViewSet):
           **data,
           "invoices_url": get_invoice_urls(instance)
       }
-      # here you can manipulate your data response
       return Response(data)
 
 class InvoiceViewSet(viewsets.ModelViewSet):
